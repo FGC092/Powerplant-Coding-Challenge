@@ -49,6 +49,6 @@ Since this is a demo project, there are several disclamers:
    - Error handling is not the main objective of this demo and could not work properly if provided data is not structured as demo files.
    - The api should be exposed using a server other than the one included in Django by default such as Nginx or Apache.
 
-### *Demo project*
+### *Results*
 
 Results to provided JSON input could be reviewed in api/results folder
