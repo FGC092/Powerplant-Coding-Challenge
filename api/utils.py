@@ -5,25 +5,29 @@ def findIndex(list, key, value):
   return next((index for (index, d) in enumerate(list) if d[key] == value), None)
 
 def mapLoadWithSources(load, sourceList, powerplants):
-  loadDistribution = []
-  unusedSources = []
-  usedSources = []
-  for source in sourceList:
-    if load > powerplants[source['index']]['pmin']:
-      if load <= source['availableLoad']:
-        providedLoad = round(load,1)
-        load = 0
+  try:
+    loadDistribution = []
+    unusedSources = []
+    usedSources = []
+    for source in sourceList:
+      if load > powerplants[source['index']]['pmin']:
+        if load <= source['availableLoad']:
+          providedLoad = round(load,1)
+          load = 0
+        else:
+          providedLoad = source['availableLoad']
+          load = round(load - providedLoad,1)
+        usedSources.append({"name": powerplants[source['index']]['name'],"p": providedLoad})
       else:
-        providedLoad = source['availableLoad']
-        load = round(load - providedLoad,1)
-      usedSources.append({"name": powerplants[source['index']]['name'],"p": providedLoad})
-    else:
-        unusedSources.append({"name": powerplants[source['index']]['name'],"p": powerplants[source['index']]['pmin']},)
-        providedLoad = 0
-    loadDistribution.append({"name": powerplants[source['index']]['name'],"p": providedLoad})
-  return {"distribution":loadDistribution, "uncoveredLoad": load, "unusedSources":unusedSources, "usedSources":usedSources}
+          unusedSources.append({"name": powerplants[source['index']]['name'],"p": powerplants[source['index']]['pmin']},)
+          providedLoad = 0
+      loadDistribution.append({"name": powerplants[source['index']]['name'],"p": providedLoad})
+    return {"distribution":loadDistribution, "uncoveredLoad": load, "unusedSources":unusedSources, "usedSources":usedSources}
+  except:
+    print('mapLoadWithSources error')
 
 def loadRedistribution(unusedSources, usedSources, noRenewableCurrentMeritOrder, remainingLoad):
+  try:
     accumulatedExtraLoad = 0
     for source in unusedSources:
         extraLoadAvailable = source['p']
@@ -41,3 +45,5 @@ def loadRedistribution(unusedSources, usedSources, noRenewableCurrentMeritOrder,
         if(accumulatedExtraLoad > remainingLoad):
             break   
     return noRenewableCurrentMeritOrder
+  except:
+    print('loadRedistribution error')
