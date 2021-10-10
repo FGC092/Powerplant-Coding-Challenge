@@ -20,6 +20,11 @@ def index(request):
 @method_decorator(csrf_exempt, name='dispatch')
 class productionplan(View):
 
+    def get(self, request, *args, **kwargs):
+        template = loader.get_template('index.html')
+        context = {}
+        return HttpResponse(template.render(context, request))
+
     def post(self, request, *args, **kwargs):
         try:
             # Fuel source for each power generator
