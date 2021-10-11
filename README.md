@@ -7,7 +7,7 @@ This is a Django project to solve the Powerplant Coding Challenge.
 To expose api in port :8888 please follow the setps:
   
    - Clone this repository
-   - Create a virtual and activate environment (venv, virtualenv, conda...)
+   - Create a virtual environment and activate the environment (venv, virtualenv, conda...)
      (example: python3 -m venv venv | source venv/bin/activate)
    - Install Django package: pip install Django or pip install -r requirements.txt
    - Run the following command: python3 manage.py runserver 8888
