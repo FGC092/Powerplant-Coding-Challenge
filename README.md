@@ -8,7 +8,8 @@ To expose api in port :8888 please follow the setps:
   
    - Clone this repository
    - Create a virtual and activate environment (venv, virtualenv, conda...)
-   - Install Django package
+     (example: python3 -m venv venv | source venv/bin/activate)
+   - Install Django package: pip install Django or pip install -r requirements.txt
    - Run the following command: python3 manage.py runserver 8888
    - To call the api endpoint please use a post http call to http://127.0.0.1:8888/api/productionplan
    
@@ -47,7 +48,7 @@ Since this is a demo project, there are several disclamers:
 
    - This django project has its secret key exposed and should never be used in production.
    - Error handling is not the main objective of this demo and could not work properly if provided data is not structured as demo files.
-   - The api should be exposed using a server other than the one included in Django by default such as Nginx or Apache.
+   - In production, the api should be exposed using a server other than the one included in Django by default such as Nginx or Apache.
 
 ### *Results*
 
